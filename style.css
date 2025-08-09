@@ -1,0 +1,202 @@
+:root{
+  --primary:#8B0000;   /* main color — change to your school's color */
+  --muted:#666;
+  --bg:#f7f7f7;
+  --text:#222;
+  --container-width:1100px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.5;
+}
+
+/* Container */
+.container{
+  width:90%;
+  max-width:var(--container-width);
+  margin:0 auto;
+}
+
+/* Header */
+.site-header{
+  background:#fff;
+  border-bottom:4px solid var(--primary);
+}
+.header-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:12px 0;
+}
+
+/* Brand (logo + school name) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.logo{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  border-radius:6px;
+  background:#fff;
+  border:2px solid rgba(0,0,0,0.05);
+  padding:6px;
+}
+.school-title h1{
+  margin:0;
+  font-size:1.4rem;
+  color:var(--primary);
+  line-height:1;
+}
+.school-title .tagline{
+  margin:2px 0 0;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* Navigation */
+.menu-toggle{
+  display:none;
+  background:transparent;
+  border:none;
+  font-size:1.6rem;
+  cursor:pointer;
+}
+.main-nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+.main-nav a{
+  text-decoration:none;
+  color:var(--text);
+  padding:8px 10px;
+  border-radius:4px;
+  font-weight:600;
+}
+.main-nav a:hover{
+  background: rgba(0,0,0,0.05);
+  color:var(--primary);
+}
+
+/* Leaders (Director & Principal) */
+.leaders{
+  margin:28px 0;
+  display:flex;
+  gap:20px;
+  align-items:start;
+  justify-content:space-between;
+}
+.leader-card{
+  flex:1 1 48%;
+  background:#fff;
+  padding:16px;
+  border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+  text-align:center;
+}
+.leader-photo{
+  width:160px;
+  height:160px;
+  object-fit:cover;
+  border-radius:8px;
+  border:4px solid var(--primary);
+  display:block;
+  margin:0 auto 10px;
+}
+.leader-message{
+  min-height:70px; /* placeholder space for message */
+  color:var(--muted);
+}
+
+/* Introduction */
+.introduction{
+  margin:18px 0 30px;
+  background:#fff;
+  padding:16px;
+  border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Quick links (Student corner stub) */
+.quick-links{
+  margin:18px 0;
+  background:#fff;
+  padding:12px;
+  border-radius:8px;
+}
+
+/* Footer */
+.site-footer{
+  margin-top:30px;
+  background:var(--primary);
+  color:white;
+  padding:18px 0 8px;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns: repeat(3,1fr);
+  gap:16px;
+  padding:12px 0;
+}
+.footer-col h4{margin:0 0 8px}
+.footer-col a{color: #fff;text-decoration:underline}
+
+/* Footer bottom */
+.footer-bottom{
+  margin-top:10px;
+  padding:8px 0;
+  text-align:center;
+  font-size:0.9rem;
+  opacity:0.95;
+}
+
+/* Social fixed right */
+.social-fixed{
+  position:fixed;
+  right:10px;
+  top:40%;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  z-index:1000;
+}
+.social{
+  display:inline-flex;
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 2px 6px rgba(0,0,0,0.12);
+}
+.social.fb{background:#3b5998}
+.social.yt{background:#ff0000}
+.social.ig{background:#e4405f}
+
+/* Responsive */
+@media (max-width:900px){
+  .leaders{flex-direction:column}
+  .footer-grid{grid-template-columns:1fr; text-align:center}
+  .main-nav ul{display:none}
+  .menu-toggle{display:block}
+  .header-inner{align-items:flex-start}
+  .school-title h1{font-size:1.1rem}
+}
+
+/* When nav is active on mobile */
+.main-nav.open ul{display:flex;flex-direction:column;gap:8px;margin-top:10px}
