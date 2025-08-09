@@ -1,221 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Govt High School Machi</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        :root {
-            --primary: #004080;
-            --secondary: #0073e6;
-            --light: #f4f4f4;
-            --white: #fff;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: var(--light);
-            scroll-behavior: smooth;
-        }
-        /* HEADER */
-        header {
-            background: var(--primary);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            flex-wrap: wrap;
-        }
-        header img {
-            height: 70px;
-            margin-right: 15px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        /* NAVIGATION */
-        nav {
-            background: var(--secondary);
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        nav a {
-            color: var(--white);
-            padding: 12px 20px;
-            text-decoration: none;
-            display: block;
-        }
-        nav a:hover {
-            background: var(--primary);
-        }
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: var(--white);
-            padding: 10px;
-        }
-        /* SECTIONS */
-        section {
-            padding: 20px;
-        }
-        .card {
-            background: var(--white);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .flex {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .card img {
-            max-width: 150px;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-        .card img:hover {
-            transform: scale(1.05);
-        }
-        footer {
-            background: var(--primary);
-            color: var(--white);
-            text-align: center;
-            padding: 15px;
-            font-size: 14px;
-        }
-        /* MOBILE */
-        @media (max-width: 768px) {
-            nav {
-                display: none;
-                flex-direction: column;
-            }
-            nav.active {
-                display: flex;
-            }
-            .menu-toggle {
-                display: block;
-                background: var(--secondary);
-                text-align: right;
-            }
-            .flex {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            header {
-                flex-direction: column;
-                text-align: center;
-            }
-            header img {
-                margin: 0 0 10px 0;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Govt High School Machi</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* ---------- Basic reset ---------- */
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#f4f6f8; color:#222; }
+
+    /* ---------- Header / Nav ---------- */
+    header {
+      display:flex; align-items:center; gap:16px;
+      background:#003366; color:#fff; padding:12px 18px;
+    }
+    header img { height:68px; width:auto; display:block; }
+    header h1 { font-size:20px; margin:0; }
+
+    nav {
+      background:#0055aa; padding:8px; text-align:center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    nav a {
+      color:#fff; text-decoration:none; margin:0 8px;
+      padding:8px 12px; border-radius:6px; display:inline-block;
+      background:transparent;
+    }
+    nav a:hover { background:#0077cc; }
+
+    /* ---------- Page layout ---------- */
+    .page {
+      display:flex; gap:24px; padding:22px; align-items:flex-start;
+    }
+    .main {
+      flex:1; min-width:280px;
+      max-width:980px;
+    }
+
+    /* ---------- Principal & Vice Principal side-by-side ---------- */
+    .leaders {
+      display:flex; gap:20px; flex-wrap:wrap;
+      margin-bottom:30px;
+    }
+    .leader-card {
+      background:#fff; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      overflow:hidden; display:flex; min-width:320px; width:100%;
+      align-items:stretch;
+    }
+    /* picture area - fixed width on desktop */
+    .leader-card .photo {
+      flex: 0 0 200px; /* fixed photo column width on desktop */
+      background:#ddd; display:flex; align-items:center; justify-content:center;
+    }
+    .leader-card .photo img {
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+    .leader-card .text {
+      padding:18px; flex:1;
+    }
+    .leader-card .text h2 { margin:0 0 10px; color:#003366; font-size:1.1rem; }
+    .leader-card .text p { margin:0; line-height:1.6; color:#333; }
+
+    /* ---------- Social sidebar (fixed right) ---------- */
+    .social-sidebar {
+      position:fixed; right:6px; top:50%; transform:translateY(-50%);
+      display:flex; flex-direction:column; gap:12px; z-index:1200;
+    }
+    .social-sidebar a {
+      width:64px; height:64px; display:flex; align-items:center; justify-content:center;
+      border-radius:10px 0 0 10px; color:#fff; text-decoration:none; font-size:22px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .social-sidebar a:hover { transform:translateX(-6px); filter:brightness(0.95); }
+    .facebook { background:#1877F2; } .youtube { background:#FF0000; }
+    .whatsapp { background:#25D366; } .instagram { background:#E1306C; }
+
+    /* ---------- Photo sections (Faculty / Students) ---------- */
+    section.photo-section {
+      margin-top:28px; margin-bottom:28px; background:transparent;
+    }
+    section.photo-section h2 {
+      margin:0 0 12px; color:#003366; font-size:1.25rem;
+    }
+    .photo-grid {
+      display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:center;
+    }
+
+    /* ---- IMPORTANT: enforce consistent small thumbnails ----
+       The specificity plus !important will override other generic rules
+    */
+    .photo-section .photo-grid img {
+      width:150px !important;
+      height:150px !important;
+      object-fit:cover !important;
+      border-radius:10px;
+      display:block;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+      transition: transform .18s ease;
+    }
+    .photo-section .photo-grid img:hover { transform:scale(1.05); }
+
+    /* make grid responsive */
+    @media (min-width:1100px) {
+      .photo-grid { justify-content:flex-start; }
+      .page { padding-right:120px; } /* give room for fixed social bar */
+    }
+    @media (max-width:900px) {
+      .leader-card { flex-direction:column; min-width:unset; }
+      .leader-card .photo { flex:0 0 auto; width:100%; height:240px; }
+      .leader-card .photo img { height:100%; }
+      .photo-section .photo-grid img { width:130px !important; height:130px !important; }
+      .social-sidebar { right:8px; transform:none; top:auto; bottom:18px; flex-direction:row; }
+      .social-sidebar a { width:52px; height:52px; border-radius:50%; }
+      .page { padding:14px; }
+    }
+
+    /* footer */
+    footer { background:#003366; color:#fff; padding:12px 18px; text-align:center; margin-top:30px; }
+  </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <img src="logo.jpg" alt="School Logo">
-        <h1>Govt High School Machi</h1>
-    </header>
+  <header>
+    <!-- Replace 'logo.jpg' with your exact file name (logo.jpg) -->
+    <img src="logo.jpg" alt="Govt High School Machi logo">
+    <h1>Govt High School Machi</h1>
+  </header>
 
-    <!-- MOBILE MENU BUTTON -->
-    <div class="menu-toggle" onclick="toggleMenu()">☰ Menu</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#programs">Programs</a>
+    <a href="#students">Students</a>
+    <a href="#academics">Academic</a>
+  </nav>
 
-    <!-- NAVIGATION -->
-    <nav id="navMenu">
-        <a href="#principal">Principal</a>
-        <a href="#vice-principal">Vice Principal</a>
-        <a href="#faculty">Faculty</a>
-        <a href="#students">Students</a>
-        <a href="#intro">Introduction</a>
-    </nav>
+  <!-- fixed social bar (desktop right, mobile bottom) -->
+  <div class="social-sidebar" aria-hidden="false">
+    <a class="facebook" href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a class="youtube" href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a class="whatsapp" href="https://wa.me/your-number" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a class="instagram" href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
 
-    <!-- PRINCIPAL -->
-    <section id="principal" class="card flex">
-        <img src="principal.jpg" alt="Principal">
-        <!-- Principal's Message -->
-<div class="message-box">
-    <h2>Message from the Principal</h2>
-    <p>
-        Welcome to Govt High School Machi. Our mission is to foster academic excellence, discipline, and moral values among our students. 
-        We believe in empowering young minds with knowledge and skills to face the challenges of the future with confidence and integrity.
-    </p>
-</div>
+  <div class="page">
+    <main class="main">
+      <!-- Leaders: principal and vice-principal side-by-side -->
+      <div class="leaders">
+        <article class="leader-card" aria-labelledby="princ-title">
+          <div class="photo">
+            <img src="principal.jpg" alt="Principal of Govt High School Machi">
+          </div>
+          <div class="text">
+            <h2 id="princ-title">Message from the Principal</h2>
+            <p>Welcome to Govt High School Machi. Our mission is to provide quality education, instill values, and prepare our students for future challenges. We take pride in our students’ achievements and in the support of our community.</p>
+          </div>
+        </article>
 
+        <article class="leader-card" aria-labelledby="vice-title">
+          <div class="photo">
+            <img src="viceprincipal.jpg" alt="Vice Principal of Govt High School Machi">
+          </div>
+          <div class="text">
+            <h2 id="vice-title">Message from the Vice Principal</h2>
+            <p>At Govt High School Machi, we promote a collaborative and caring environment where each learner can grow academically and personally. Our teachers work hard to make learning engaging and meaningful.</p>
+          </div>
+        </article>
+      </div>
 
-    </section>
-
-    <!-- VICE PRINCIPAL -->
-    <section id="vice-principal" class="card flex">
-        <img src="viceprincipal.jpg" alt="Vice Principal">
-        <!-- Vice Principal's Message -->
-<div class="message-box">
-    <h2>Message from the Vice Principal</h2>
-    <p>
-        At Govt High School Machi, we strive to create a learning environment that is inclusive, innovative, and inspiring. 
-        Together with our dedicated staff, we are committed to providing the best possible education for our students.
-    </p>
-</div>
-
-    </section>
-
-    <!-- FACULTY -->
-    <section id="faculty" class="card">
+      <!-- Faculty section -->
+      <section class="photo-section" id="faculty">
         <h2>Faculty Members</h2>
-        <div class="flex">
-            <img src="faculty1.jpg" alt="Faculty 1">
-            <img src="faculty2.jpg" alt="Faculty 2">
-            <img src="faculty3.jpg" alt="Faculty 3">
+        <div class="photo-grid">
+          <!-- Replace these filenames with your real images -->
+          <img src="faculty1.jpg" alt="Faculty 1">
+          <img src="faculty2.jpg" alt="Faculty 2">
+          <img src="faculty3.jpg" alt="Faculty 3">
+          <img src="faculty4.jpg" alt="Faculty 4">
+         
         </div>
-    </section>
+      </section>
 
-    <!-- STUDENTS -->
-    <section id="students" class="card">
+      <!-- Students section -->
+      <section class="photo-section" id="students">
         <h2>Students</h2>
-        <div class="flex">
-            <img src="student1.jpg" alt="Student 1">
-            <img src="student2.jpg" alt="Student 2">
-            <img src="student3.jpg" alt="Student 3">
+        <div class="photo-grid">
+          <img src="student1.jpg" alt="Student 1">
+          <img src="student2.jpg" alt="Student 2">
+          <img src="student3.jpg" alt="Student 3">
+          
         </div>
-    </section>
+      </section>
+    </main>
+  </div>
 
-    <!-- INTRODUCTION -->
-    <section id="intro" class="card">
-        <h2>About Our School</h2>
-        <p>Write about Govt High School Machi here...</p>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2025 Govt High School Machi | All Rights Reserved</p>
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('navMenu').classList.toggle('active');
-        }
-    </script>
-
-<!-- Social Links Sidebar -->
-<div class="social-sidebar">
-    <a href="https://facebook.com/YOURPAGE" target="_blank" class="social-link fb">Facebook</a>
-    <a href="https://youtube.com/YOURCHANNEL" target="_blank" class="social-link yt">YouTube</a>
-    <a href="https://wa.me/YOURNUMBER" target="_blank" class="social-link wa">WhatsApp</a>
-</div>
-
+  <footer>
+    &copy; 2025 Govt High School Machi — All rights reserved
+  </footer>
 
 </body>
 </html>
